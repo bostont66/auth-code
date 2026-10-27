@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // ─── Auth Routes ──────────────────────────────────────
 Route::middleware('web')->group(function () {
     Route::middleware('guest')->group(function () {
+    Route::middleware('throttle:10,1')->group(function () {
     Route::get('/login', [LoginController::class, 'showLogin'])->name('auth.login');
     Route::post('/auth/login', [LoginController::class, 'sendCode'])->name('auth.login.send');
 
@@ -19,6 +20,8 @@ Route::middleware('web')->group(function () {
     Route::get('/auth/register/verify', [RegistrationController::class, 'showVerify'])->name('auth.register.verify');
     Route::post('/auth/register/verify', [RegistrationController::class, 'verify'])->name('auth.register.verify.post');
     Route::get('/auth/register/activate', [RegistrationController::class, 'verifyByLink'])->name('auth.register.verify.token');
+    });
+
     });
 
     Route::post('/auth/logout', [LoginController::class, 'logout'])
