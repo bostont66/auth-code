@@ -27,7 +27,7 @@ class LoginCodeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'auth-code::emails.login-code',
+            markdown: 'auth-code::emails.login-code',
             with: [
                 'user' => $this->user,
                 'code' => $this->code,

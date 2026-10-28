@@ -27,7 +27,7 @@ class RegistrationVerifyMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'auth-code::emails.registration-verify',
+            markdown: 'auth-code::emails.registration-verify',
             with: [
                 'registration' => $this->registration,
                 'verifyUrl' => route('auth.register.verify.token', [
