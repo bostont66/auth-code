@@ -6,6 +6,12 @@
 <h2 class="text-xl font-semibold text-graphite mb-1">Sign in</h2>
 <p class="text-sm text-muted mb-6">Enter your email to receive a login code.</p>
 
+@if (request('expired'))
+    <div class="mb-4 p-3 rounded-lg bg-yellow-50 border border-yellow-200 text-yellow-800 text-sm">
+        Your session expired. Please sign in again.
+    </div>
+@endif
+
 <form method="POST" action="{{ route('auth.login.send') }}" onsubmit="var b=this.querySelector('button[type=submit]'); b.disabled=true; b.textContent='Sending…';">
     @csrf
     <div class="mb-4">
